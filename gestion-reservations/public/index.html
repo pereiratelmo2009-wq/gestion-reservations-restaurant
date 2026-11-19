@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173c32">
+  <title>Réservations — Gestion du service</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">R</div><div><strong>Réservations</strong><span>GESTION DU SERVICE</span></div></div>
+      <button id="logout" class="quiet hidden">Déconnexion</button>
+    </header>
+
+    <section id="loginView" class="login-card">
+      <div class="eyebrow">ESPACE ÉQUIPE</div>
+      <h1>Bonjour !</h1>
+      <p>Connecte-toi pour gérer les réservations du restaurant.</p>
+      <form id="loginForm"><label>Mot de passe de l'équipe</label><input id="password" type="password" autocomplete="current-password" required placeholder="Mot de passe"><button class="primary" type="submit">Accéder au planning</button></form>
+      <p id="loginError" class="error"></p>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="intro">
+        <div><div class="eyebrow">TABLEAU DE SERVICE</div><h1>Les réservations</h1><p>Importe ta note, vérifie les informations et prépare ta fiche.</p></div>
+        <label class="date-label">Date du service<input type="date" id="serviceDate"></label>
+      </div>
+
+      <section class="upload-panel">
+        <div class="upload-icon">↥</div>
+        <div class="upload-copy"><h2>Importer une note</h2><p>Prends une photo ou choisis une image de ta feuille manuscrite. L'IA proposera les réservations à vérifier.</p></div>
+        <label class="file-button">📷 Choisir une photo<input id="photo" type="file" accept="image/*" capture="environment"></label>
+      </section>
+      <div id="scanStatus" class="status" aria-live="polite"></div>
+
+      <section class="stats">
+        <article><span>Réservations</span><strong id="bookingCount">0</strong></article>
+        <article><span>Couverts</span><strong id="coverCount">0</strong></article>
+        <article><span>Présents</span><strong id="presentCount">0</strong></article>
+      </section>
+
+      <section class="list-panel">
+        <div class="list-head"><div><h2>Liste du service</h2><p>Les lignes sont classées par numéro de table.</p></div><button id="addBooking" class="secondary">＋ Ajouter</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Présent</th><th>Nom / réservation</th><th>Table</th><th>Arrivée</th><th>Couverts</th><th></th></tr></thead><tbody id="bookingRows"></tbody></table></div>
+        <div id="emptyState" class="empty">Aucune réservation pour cette date. Ajoute une ligne ou importe une photo.</div>
+        <div class="list-foot"><span id="footTotal">0 réservation · 0 couvert</span><button id="printBtn" class="primary">Imprimer / créer le PDF</button></div>
+      </section>
+      <p class="privacy-note">Les réservations sont partagées avec les personnes qui disposent du mot de passe de l'équipe.</p>
+    </section>
+    <footer>Outil de gestion des réservations · Accès réservé à l'équipe</footer>
+  </main>
+  <script src="/app.js"></script>
+</body></html>
